@@ -9,6 +9,19 @@ import RobotNoto from "./assets/noto.svg";
 
 import "./App.css";
 
+function Emojipedia({ emojis }: { emojis: string[] }) {
+  return emojis.map((c) => (
+    <a
+      href={"https://emojipedia.org/" + c}
+      target="_blank"
+      rel="noopener noreferrer"
+      key={c}
+    >
+      {c}
+    </a>
+  ));
+}
+
 function App() {
   const emotions: Emotion[] = ["disappointed", "neutral", "excited"];
   const [emotion, setEmotion] = useState<Emotion>("neutral");
@@ -27,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Robot faces</h1>
       <div className="gallery">
         {emojiImages.map((emoji) => {
           let title = emoji.name;
@@ -34,9 +48,8 @@ function App() {
             title += " - " + emoji.variant;
           }
           return (
-            <figure className="card">
+            <figure key={emoji.name + emoji.variant} className="card">
               <img
-                key={emoji.name + emoji.variant}
                 alt={title}
                 title={title}
                 src={emoji.img}
@@ -67,6 +80,37 @@ function App() {
         </a>
         ...
       </p>
+      <h1>Emotions</h1>
+      <p className="emojis">
+        Positive:{" "}
+        <Emojipedia
+          emojis={["😀", "😃", "😄", "😁", "🙂", "☺️", "😉", "😏", "😌"]}
+        />
+      </p>
+      <p className="emojis">
+        Neutral: <Emojipedia emojis={["😐", "😑", "🤨", "🙄"]} />
+      </p>
+      <p className="emojis">
+        Negative:{" "}
+        <Emojipedia
+          emojis={[
+            "😔",
+            "😵",
+            "🥴",
+            "😕",
+            "🫤",
+            "😟",
+            "🙁",
+            "☹️",
+            "😮",
+            "😦",
+            "😧",
+            "😞",
+            "😠",
+          ]}
+        />
+      </p>
+      <h1>Animation</h1>
       <div className="demo">
         <RobotFace emotion={emotion} />
         <div className="controls">

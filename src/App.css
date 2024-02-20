@@ -21,6 +21,16 @@
   text-align: center;
 }
 
+.App .emojis {
+  margin: 0 0 1em;
+  text-align: left;
+}
+
+.App .emojis a {
+  font-size: xx-large;
+  letter-spacing: 0.5em;
+}
+
 .App .demo {
   display: flex;
   flex-direction: column;
